@@ -1,22 +1,77 @@
-<div class="m-0 pt-5 w-100 bg-img-2">
-	<form action="/auth/login" method="POST" class="w-50 bg-white p-5 m-auto" style="min-width: 320px;">
-		<h3 class="text-center mb-3">User Login</h3>
-		<div class="mb-3">
-			<label for="email" class="form-label">Email address</label>
-			<input type="email" name="email" class="form-control" id="email" placeholder="Enter email.." required autofocus>
-		</div>
+<div class="login-page d-flex align-items-center justify-content-center min-vh-100" style="background: linear-gradient(135deg, #1e3c72, #2a5298);">
+  <div class="login-card bg-white shadow-lg p-5 rounded-4 text-center" style="max-width: 420px; width: 90%;">
+    
+    <div class="mb-4">
+      <i class="fas fa-user-circle text-primary" style="font-size: 4rem;"></i>
+    </div>
 
-		<div class="mb-3">
-			<label for="password" class="form-label">Password</label>
-			<input type="password" name="password" class="form-control" id="password" placeholder="Enter password.." required>
-		</div>
-		
-		<button type="submit" class="btn d-block m-auto mt-4">Submit</button>
-		
-		<div class="mt-3">
-			<span>Don't have an account?</span>
-			<a href="/auth/signup">Signup here</a>
-		</div>
-		
-	</form>
+    <h2 class="fw-bold mb-2 text-primary">Welcome Back</h2>
+    <p class="text-muted mb-4">Login to continue your food donation journey 💙</p>
+
+    <form action="/auth/login" method="POST">
+      <div class="form-floating mb-3 text-start">
+        <input type="email" name="email" class="form-control" id="email" placeholder="Enter email.." required autofocus>
+        <label for="email">Email address</label>
+      </div>
+
+      <div class="form-floating mb-4 text-start">
+        <input type="password" name="password" class="form-control" id="password" placeholder="Enter password.." required>
+        <label for="password">Password</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold rounded-pill shadow-sm">
+        <i class="fas fa-sign-in-alt me-2"></i>Login
+      </button>
+    </form>
+
+    <div class="mt-4">
+      <p class="text-muted mb-1">Don't have an account?</p>
+      <a href="/auth/signup" class="fw-semibold text-primary text-decoration-none">Create one now</a>
+    </div>
+  </div>
 </div>
+
+<style>
+  body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+  }
+
+  .login-card {
+    animation: fadeInUp 0.6s ease-in-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .btn-primary {
+    background-color: #1e3c72;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background-color: #17325f;
+    transform: translateY(-2px);
+    transition: 0.2s;
+  }
+
+  .form-floating > label {
+    color: #6c757d;
+  }
+
+  .form-control:focus {
+    border-color: #2a5298;
+    box-shadow: 0 0 0 0.2rem rgba(42, 82, 152, 0.25);
+  }
+
+  .login-page {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+  }
+</style>

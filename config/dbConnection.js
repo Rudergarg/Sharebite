@@ -3,7 +3,7 @@ const MONGO_URI='mongodb://127.0.0.1:27017/DatabaseFood';
 const connectDB = async() => {
 	try
 	{
-		const db = process.env.MONGO_URI;
+		const db = process.env.MONGO_URI || MONGO_URI;
 		await mongoose.connect(db);
 		console.log("MongoDB connected...");
 	}

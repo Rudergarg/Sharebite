@@ -1,39 +1,76 @@
 <main>
 	<%- include('../partials/adminSidebar') %>
-	
+
 	<div id="main-wrapper">
-		
-		<div class="bg-white shadow-sm p-3">
-			<span class="me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
-			<h5 class="m-0 color-theme d-inline-block">Pending Donations</h5>
+
+		<!-- Header -->
+		<div class="bg-white shadow-sm p-3 d-flex align-items-center">
+			<span id="sidebar-toggler-btn" class="me-3">
+				<i class="fas fa-bars"></i>
+			</span>
+			<h5 class="m-0 color-theme">Pending Donations</h5>
 		</div>
-		
-		<div class="col col-sm-10 col-12 m-auto my-4" style="max-height: 75%; overflow: auto;">
-			<table class="table table-info table-striped table-hover m-0 bg-white">
-				<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Donor name</th>
-						<th scope="col">Food type</th>
-						<th scope="col">Quantity</th>
-						<th scope="col">Status</th>
-						<th scope="col">Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% for(let i=0; i<pendingDonations.length; i++) { %>
+
+		<!-- Table Card -->
+		<div class="container my-4">
+
+			<div class="p-4 bg-white rounded-3 shadow-sm border" style="max-height: 75vh; overflow: auto;">
+				
+				<table class="table table-hover align-middle">
+					<thead class="table-light border-bottom">
 						<tr>
-							<th scope="row"> <%= i+1 %> </th>
-							<td> <%= pendingDonations[i].donor.firstName + " " + pendingDonations[i].donor.lastName %> </td>
-							<td> <%= pendingDonations[i].foodType %> </td>
-							<td> <%= pendingDonations[i].quantity %> </td>
-							<td class="fw-bold text-<%= pendingDonations[i].status %>"> <%= pendingDonations[i].status %> </td>
-							<td><a href="/admin/donation/view/<%= pendingDonations[i]._id %>" class="btn">View</a></td>
+							<th>#</th>
+							<th>Donor Name</th>
+							<th>Food Type</th>
+							<th>Quantity</th>
+							<th>Status</th>
+							<th>Actions</th>
 						</tr>
-					<% } %>
-				</tbody>
-			</table>
+					</thead>
+
+					<tbody>
+						<% for (let i = 0; i < pendingDonations.length; i++) { %>
+							<tr>
+								<td><%= i + 1 %></td>
+
+								<td class="fw-semibold">
+									<%= pendingDonations[i].donor.firstName + " " + pendingDonations[i].donor.lastName %>
+								</td>
+
+								<td><%= pendingDonations[i].foodType %></td>
+
+								<td><%= pendingDonations[i].quantity %></td>
+
+								<td>
+									<span class="badge px-3 py-2 bg-opacity-10 text-capitalize
+										<%= pendingDonations[i].status === 'pending' ? 'bg-warning text-warning' : 
+										   pendingDonations[i].status === 'accepted' ? 'bg-success text-success' : 
+										   'bg-secondary text-secondary' %>">
+										<%= pendingDonations[i].status %>
+									</span>
+								</td>
+
+								<td>
+									<a href="/admin/donation/view/<%= pendingDonations[i]._id %>" 
+									   class="btn btn-sm btn-outline-primary rounded-pill px-3">
+										View
+									</a>
+								</td>
+							</tr>
+						<% } %>
+					</tbody>
+
+				</table>
+
+			</div>
+
 		</div>
-		
+
 	</div>
 </main>
+
+<style>
+	.table-hover tbody tr:hover {
+		background-color: #f8f9fc !important;
+	}
+</style>
